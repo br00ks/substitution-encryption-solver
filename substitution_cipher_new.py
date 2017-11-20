@@ -2,10 +2,9 @@ import enchant, operator, frequency_analyis, re
 
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
            'w', 'x', 'y', 'z']
-# abc = "abcdefghijklmnopqrstuvwxyz"
-file = open("C:/Users/Karin/PycharmProjects/ue1_svs/svs/sample_encrypted.txt", "r").read().lower()
+#file = open("C:/Users/Karin/PycharmProjects/ue1_svs/svs/sample_encrypted.txt", "r").read().lower()
 # file_original = open("C:/Users/Karin/PycharmProjects/ue1_svs/svs/sample_original", "r").read().lower()
-# file = open("C:/Users/Karin/PycharmProjects/ue1_svs/svs/another_example.txt", "r").read().lower()
+file = open("C:/Users/Karin/PycharmProjects/ue1_svs/svs/another_example.txt", "r").read().lower()
 dictionary = enchant.Dict("en_US")
 letter_occurrence = {}
 cipher_key = {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [],
@@ -17,25 +16,6 @@ letter_frequencies = {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g':
 letter_candidates = {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [],
                      'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [],
                      'w': [], 'x': [], 'y': [], 'z': []}
-
-# letter frequency taken from : https://inventwithpython.com/hacking/chapter20.html
-# english_letter_frequency = {'e': 12.70, 't': 9.06, 'a': 8.17, 'o': 7.51, 'i': 6.97, 'n': 6.75, 's': 6.33, 'h': 6.09,
-#                            'r': 5.99, 'd': 4.25, 'l': 4.03, 'c': 2.78, 'u': 2.76, 'm': 2.41, 'w': 2.36, 'f': 2.23,
-#                            'g': 2.02, 'y': 1.97, 'p': 1.93, 'b': 1.29, 'v': 0.98, 'k': 0.77, 'j': 0.15, 'x': 0.15,
-#                            'q': 0.10, 'z': 0.07}
-
-# frequencies taken from : https://www3.nd.edu/~busiforc/handouts/cryptography/cryptography%20hints.html
-# https://www3.nd.edu/~busiforc/handouts/cryptography/cryptography%20hints.html
-# sorted by average occurrences
-two_letters = ['of', 'to', 'in', 'it', 'is', 'be', 'as', 'at', 'so', 'we', 'he', 'by', 'or', 'on', 'do', 'if', 'me',
-               'my', 'up', 'an', 'go', 'no', 'us', 'am']
-
-three_letters = ['the', 'and', 'for', 'are', 'but', 'not', 'you', 'all', 'any', 'can', 'had', 'her', 'was', 'one',
-                 'our', 'out', 'day', 'get', 'has', 'him', 'his', 'how', 'man', 'new', 'now', 'old', 'see', 'two',
-                 'way', 'who', 'boy', 'did', 'its', 'let', 'put', 'say', 'she', 'too', 'use']
-
-four_letters = ['that', 'with', 'have', 'this', 'will', 'your', 'from', 'they', 'know', 'want', 'been', 'good', 'much',
-                'some', 'time']
 
 
 # function that sets cipher key dictionary with given letter and likely key for that
@@ -154,8 +134,9 @@ def analyse_two_letter_words():
         set_letter(most_frequent[0], 'o')
         set_letter(most_frequent[1], 'f')
         second_most_frequent = sorted_list[1][0]
-        set_letter(second_most_frequent[0], 't')
-        set_letter(second_most_frequent[1], 'o')
+        if second_most_frequent[1] == most_frequent[0]:
+            set_letter(second_most_frequent[0], 't')
+            set_letter(second_most_frequent[1], 'o')
 
 
 # function counts three letter words and sets the most frequent to "the"
