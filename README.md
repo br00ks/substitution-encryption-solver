@@ -1,2 +1,2 @@
-# svs
-svs 2017
+# Assignment
+A substitution encryption solver
